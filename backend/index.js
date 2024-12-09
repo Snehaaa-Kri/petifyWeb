@@ -4,11 +4,12 @@ const port = process.env.PORT;
 
 const express = require('express');   //using express we can create app instance
 const app = express();
+// console.log("APP POWERS ARE:   \n ",app);
 
 //initialising mongoose package
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const multer = require('multer');
+const multer = require('multer');//image uploading
 const path = require('path'); //using this path, we can get access to backend directory in our express app
 const cors = require('cors');
 
