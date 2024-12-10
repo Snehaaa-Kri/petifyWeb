@@ -1,15 +1,9 @@
 import React, { useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 import remove_icon from '../assets/cart_cross_icon.png';
-import {loadStripe} from '@stripe/stripe-js';
 
 function CartItems() {
   const { all_product, CartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
-
-
-
-
-
 
 
   return (
@@ -37,9 +31,9 @@ function CartItems() {
               <div className=" grid grid-cols-[0.5fr_1.5fr_1fr_1fr_1fr_1fr] items-center gap-[25px] py-[20px] text-[#454545] text-[17px] font-medium ">
                 <img className='h-[80px]' src={e.image} alt="" />
                 <p>{e.name}</p>
-                <p>${e.new_price}</p>
+                <p>₹{e.new_price}</p>
                 <button className='w-[64px] h-[50px] border-2 border-solid'>{CartItems[e.id]}</button>
-                <p>${e.new_price * CartItems[e.id]}</p>
+                <p>₹{e.new_price * CartItems[e.id]}</p>
                 <img className='w-[15px] mx-[40px] cursor-pointer'
                   src={remove_icon}
                   onClick={() => {removeFromCart(e.id)}}
@@ -61,7 +55,7 @@ function CartItems() {
             <div className="">
                 <div className="flex justify-between py-[15px]">
                     <p>Subtotal</p>
-                    <p>${getTotalCartAmount()}</p>
+                    <p>₹{getTotalCartAmount()}</p>
                 </div>
                 <hr />
                 <div className="flex justify-between py-[15px]">
@@ -72,7 +66,7 @@ function CartItems() {
                 <hr />
                 <div className="flex justify-between py-[15px] font-semibold">
                     <h3>Total</h3>
-                    <h3>${getTotalCartAmount()}</h3>
+                    <h3>₹{getTotalCartAmount()}</h3>
                 </div>
             </div>
             <button className='w-[252px] h-[50px] outline-none border-none bg-[#ff5a5a] text-[#fff] text-[16px] font-semibold cursor-pointer'>PROCEED TO CHECKOUT</button>

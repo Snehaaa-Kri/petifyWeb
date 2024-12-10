@@ -9,7 +9,11 @@ function AddProduct() {
         image: "",
         category: "dogs",
         new_price: "",
-        old_price: ""
+        old_price: "",
+        mainDes: "",
+        description: "",
+        review: "",
+        rating: ""
     });
 
     const imageHandler = (e) => {
@@ -33,6 +37,11 @@ function AddProduct() {
         formData.append('category', productDetails.category);
         formData.append('new_price', productDetails.new_price);
         formData.append('old_price', productDetails.old_price);
+        formData.append('mainDes', productDetails.mainDes);
+        formData.append('description', productDetails.description);
+        formData.append('review', productDetails.review);
+        formData.append('rating', productDetails.rating)
+
 
         try {
             // Upload image first
@@ -92,6 +101,11 @@ function AddProduct() {
                     <p>Offer Price</p>
                     <input value={productDetails.new_price} onChange={changeHandler} className='box-border w-[100%] h-[50px] rounded-[4px] pl-[15px] border border-solid border-[#c3c3c3] outline-none text-[#7b7b7b] font-"Poppins" text-[14px]' type="text" name='new_price' placeholder='Type here' />
                 </div>
+
+                <div className="w-[50%]">
+                    <p>Rating (0-5)</p>
+                    <input value={productDetails.rating} onChange={changeHandler} className='box-border w-[100%] h-[50px] rounded-[4px] pl-[15px] border border-solid border-[#c3c3c3] outline-none text-[#7b7b7b] font-"Poppins" text-[14px]' type="text" name='rating' placeholder='Type here' />
+                </div>
             </div>
 
             <div className="w-[100%] text-[#7b7b7b] text-[16px]">
@@ -104,6 +118,28 @@ function AddProduct() {
                     <option value="adopt">Adopt</option>
                 </select>
             </div>
+
+            {/* main description  */}
+            <div className="w-[100%] text-[#7b7b7b] text-[16px]">
+                <p>About {productDetails.category}</p>
+                <input value={productDetails.mainDes} onChange={changeHandler} className='box-border w-[100%] h-[50px] rounded-[4px] pl-[15px] border border-solid border-[#c3c3c3] outline-none text-[#7b7b7b] font-"Poppins" text-[14px]' type="text" name='mainDes' placeholder='Type here' />
+            </div>
+
+
+            {/*description  */}
+            <div className="w-[100%] text-[#7b7b7b] text-[16px]">
+                <p>Description</p>
+                <input value={productDetails.description} onChange={changeHandler} className='box-border w-[100%] h-[50px] rounded-[4px] pl-[15px] border border-solid border-[#c3c3c3] outline-none text-[#7b7b7b] font-"Poppins" text-[14px]' type="text" name='description' placeholder='Type here' />
+            </div>
+
+            {/*Review  */}
+            <div className="w-[100%] text-[#7b7b7b] text-[16px]">
+                <p>Review</p>
+                <input value={productDetails.review} onChange={changeHandler} className='box-border w-[100%] h-[50px] rounded-[4px] pl-[15px] border border-solid border-[#c3c3c3] outline-none text-[#7b7b7b] font-"Poppins" text-[14px]' type="text" name='review' placeholder='Type here' />
+            </div>
+
+
+
 
             <div className="">
                 <label htmlFor="file-input">

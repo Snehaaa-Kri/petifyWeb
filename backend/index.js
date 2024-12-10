@@ -91,6 +91,30 @@ app.post('/upload', upload.single('product'), (req, res)=>{
             type: Number,
             required: true
         },
+        mainDes: {
+            type: String,
+            required: true
+        },
+        description:{
+            type: String,
+            required : true
+        },
+        review:{
+            type: String, 
+            required : true
+        },
+        rating: {
+            type: Number,
+            required: true,
+            min: [0, 'Rating must be at least 0'],
+            max: [5, 'Rating must not exceed 5'],
+            validate: {
+                validator: function (value) {
+                    return Number(value) === value && value >= 0 && value <= 5;
+                },
+                message: 'Rating must be a floating-point number between 0 and 5'
+            }
+        },
         date: {
             type: Date,
             default: Date.now
@@ -157,6 +181,10 @@ app.post('/upload', upload.single('product'), (req, res)=>{
                 category: req.body.category,
                 new_price: req.body.new_price,
                 old_price: req.body.old_price,
+                mainDes: req.body.mainDes,
+                description: req.body.description,
+                review: req.body.review,
+                rating: req.body.rating
             });
     
             await product.save(); //saving the product in db
@@ -230,7 +258,7 @@ app.post('/upload', upload.single('product'), (req, res)=>{
 
 
 
-    //popular in women category
+    //popular in pets category
     app.get('/popularinpets', async (req, res) => {
         let products = await Product.find({category: { $in: ["dogs", "cats"] }});
         let popular_in_pets = products.slice(0,4);

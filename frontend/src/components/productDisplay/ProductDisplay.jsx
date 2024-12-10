@@ -46,23 +46,36 @@ function ProductDisplay(props) {
       {/* Right  */}
       <div className="my-[0px] mx-[40px] flex flex-col ">
         <h1 className='font-bold text-[30px] text-[#3d3d3d]'>{product.name}</h1>
-        <div className="flex items-center mt-[11px] gap-[4px] text-[#1c1c1c] text-[16px] ">
+        {/* <div className="flex items-center mt-[11px] gap-[4px] text-[#1c1c1c] text-[16px] ">
           <img src={start_icon} alt="" />
           <img src={start_icon} alt="" />
           <img src={start_icon} alt="" />
           <img src={start_icon} alt="" />
           <img src={star_dull_icon} alt="" />
           <p>(122)</p>
+        </div> */}
+        
+        <div className="flex items-center mt-[11px] gap-[4px] text-[#1c1c1c] text-[16px] ">
+          {Array.from({ length: 5 }, (_, index) => (
+          <img
+            key={index}
+            src={index < Math.round(product.rating) ? start_icon : star_dull_icon}
+            alt=""
+          />
+          ))}
+          <p>({product.rating})</p>
         </div>
 
+
+
         <div className="flex mt-[40px] gap-[20px] text-[20px] font-bold">
-          <div className="line-through text-[#818181]">${product.old_price}</div>
-          <div className="text-[#ff4141] ">${product.new_price}</div>
+          <div className="line-through text-[#818181]">₹{product.old_price}</div>
+          <div className="text-[#ff4141] ">₹{product.new_price}</div>
         </div>
 
         {/* description  */}
-        <div className="">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quisquam eum quae a rerum qui reiciendis labore architecto possimus ut, officia, temporibus sunt dolore veritatis delectus voluptatem maxime nihil commodi? 
+        <div className="w-[580px]">
+          {(product.mainDes) ? product.mainDes : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quisquam eum quae a rerum qui reiciendis labore architecto possimus ut, officia, temporibus sunt dolore veritatis delectus voluptatem maxime nihil commodi?" } 
         </div>
 
         {/* Select Quantity */}
