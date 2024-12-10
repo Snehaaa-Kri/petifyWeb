@@ -4,6 +4,14 @@ const port = process.env.PORT;
 
 const express = require('express');   //using express we can create app instance
 const app = express();
+
+// app.use(cors(
+//     {
+//         origin: ["https://deploy-mern-1whq.vercel.app"],
+//         mathods: ["POST", "GET"],
+//         credentials: true
+//     }
+// ));
 // console.log("APP POWERS ARE:   \n ",app);
 
 //initialising mongoose package
