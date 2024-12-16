@@ -1,4 +1,5 @@
 require('dotenv').config();
+const Stripe = require('stripe');
 
 const port = process.env.PORT;
 
@@ -45,6 +46,35 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.get("/", (req, res) => {
     res.send("Express app is runnig")
 })
+
+
+//
+    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+    // Stripe Payment Intent Route
+    app.post('/api/stripe/create-payment-intent', async (req, res) => {
+        try {
+          const { amount, currency } = req.body;
+        
+          if (!amount) {
+            return res.status(400).send({ error: 'Amount is required' });
+          }
+      
+          // Create a payment intent
+          const paymentIntent = await stripe.paymentIntents.create({
+            amount, // Amount in cents (e.g., $10 -> 1000)
+            currency: currency || 'usd', // Default to USD if not provided
+          });
+      
+          res.send({
+            clientSecret: paymentIntent.client_secret,
+          });
+        } catch (error) {
+          console.error('Error creating payment intent:', error.message);
+          res.status(500).send({ error: error.message });
+        }
+      });
+
+
 
 
 // ------------------------------ IMAGE STORAGE ENGINE ------------------------- starts
@@ -447,6 +477,10 @@ app.post('/upload', upload.single('product'), (req, res)=>{
 
 
 
+    //create payment
+
+
+
 
 
     //-------- CREATING API FOR LISTING ALL PRODUCTS FROM DB ---------- ends
@@ -457,5 +491,6 @@ app.listen(port, (err) =>{
     }
     else{
         console.log("error: "+ err);
+
     }
 }) 

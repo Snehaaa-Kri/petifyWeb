@@ -6,7 +6,7 @@ function Popular() {
   const [popularProducts, setPopularProducts] = useState([]);
 
   useEffect(() =>{
-    fetch(`https://petifyweb.onrender.com/popularinpets`)
+    fetch(`${process.env.REACT_APP_API_URL}/popularinpets`)
     .then((response) => response.json())
     .then((data) => setPopularProducts(data))
   }, [])

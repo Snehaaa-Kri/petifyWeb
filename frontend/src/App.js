@@ -45,7 +45,8 @@ function App() {
           <Route path="/cats" element={<ShopCategory banner={cat_banner} category="cats" />} />
           <Route path="/accessories" element={<ShopCategory banner={accessories_banner} category="accessories" />} />
           <Route path="/hotels" element={<ShopCategory banner={hotels_banner} category="hotels" />} />
-          <Route path="/adopt" element={<ShopCategory banner={adopt_banner} category="adopt" />} />
+          {/* <Route path="/adopt" element={<ShopCategory banner={adopt_banner} category="adopt" />} /> */}
+          <Route path="/adopt" element={<Adopt/>} />
 
           <Route path="/company" element={<Company />} />
           <Route path="/offices" element={<Offices />} />
